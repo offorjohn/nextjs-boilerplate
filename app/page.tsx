@@ -1,4 +1,4 @@
-import { getExpenses} from '@/prisma/lib/expenses'
+import { getExpenses } from "./../prisma/lib/expenses";
 import Image from "next/image";
 
 
