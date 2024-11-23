@@ -1,6 +1,10 @@
+import { getExpenses} from './../../../hello-prisma/prisma/lib/expenses'
 import Image from "next/image";
 
-export default function Home() {
+
+export default  async function Home() {
+  const expenses = await getExpenses()
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -22,6 +26,22 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <div>
+          <div>
+            <h3>
+              <ul>
+                {expenses.map(expense => (
+                  <li key={expense.id}>
+                    <span>{expense.title}</span>
+                    <span>{expense.amount}</span>
+
+                  </li>
+                ))}
+              </ul>
+            </h3>
+          </div>
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
@@ -96,6 +116,7 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+
     </div>
   );
 }
